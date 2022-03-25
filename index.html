@@ -6,24 +6,35 @@
     <body>
       <canvas height="500" width="500" style="border: 2px solid #000000" id="ctx"/>
       <script>
+        // Sets up canvas
         var ctx = document.getElementById('ctx').getContext('2d');
+        // Declares how to make wheels
         wheels = function(x, y, radius) {
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
           ctx.fillStyle = '#000000';
           ctx.fill();
         }
+        // Declares how to make car and road
         drawMovingBox = function(x, y){
+          ctx.fillStyle = '#9A9A9A';
+          ctx.fillRect(0, 290, 500, 25);
           ctx.fillStyle = 'red';
           ctx.fillRect(x, y, 80, 50);
           wheels(x+20, y+50, 10);
           wheels(x+60, y+50, 10);
         }
-        var boxX = 0;
+        // Declares start for the car's x
+        var boxX = 0
+        var changeOfX = 5;
+        // Continusly makes the car move using the above functions
         setInterval(function(){
           ctx.clearRect(0, 0, 500, 500);
           drawMovingBox(boxX, 250);
-          boxX+=5;
+          boxX += changeOfX;
+          if (boxX > 500) {
+            boxX = 0;
+          }
         },25);
       </script>
     </body>
