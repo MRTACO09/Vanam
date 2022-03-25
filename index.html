@@ -1,0 +1,30 @@
+
+  <html>
+    <head>
+      <title></title>
+    </head>
+    <body>
+      <canvas height="500" width="500" style="border: 2px solid #000000" id="ctx"/>
+      <script>
+        var ctx = document.getElementById('ctx').getContext('2d');
+        wheels = function(x, y, radius) {
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+          ctx.fillStyle = '#000000';
+          ctx.fill();
+        }
+        drawMovingBox = function(x, y){
+          ctx.fillStyle = 'red';
+          ctx.fillRect(x, y, 80, 50);
+          wheels(x+20, y+50, 10);
+          wheels(x+60, y+50, 10);
+        }
+        var boxX = 0;
+        setInterval(function(){
+          ctx.clearRect(0, 0, 500, 500);
+          drawMovingBox(boxX, 250);
+          boxX+=5;
+        },25);
+      </script>
+    </body>
+  </html>
